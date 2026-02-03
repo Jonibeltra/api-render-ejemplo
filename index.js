@@ -5,6 +5,10 @@ app.get('/', (req, res) => {
 res.json({ message: 'API funcionando correctamente' });
 });
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-console.log('Servidor arrancado en el puerto', PORT);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log('Servidor arrancado en el puerto', PORT);
+  });
+} else {
+  console.log('Modo test: servidor NO iniciado');
+}
